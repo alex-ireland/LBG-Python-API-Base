@@ -5,6 +5,7 @@ set -e
 
 # Define Docker image name
 DOCKER_IMAGE="lbg"
+CONTAINER_NAME="lbg-web-app"
 
 cleanup() {
   echo "Cleaning up previous build artifacts..."
@@ -36,7 +37,7 @@ modify_app() {
 run_docker() {
   echo "Running Docker container..."
   sleep 3
-  docker run -d -p 80:$PORT -e PORT=$PORT $DOCKER_IMAGE
+  docker run --name $CONTAINER_NAME -d -p 80:$PORT -e PORT=$PORT $DOCKER_IMAGE
 }
 
 # Main script execution

@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
     runDeployment = false
+    CONTAINER_NAME = lbg-web-app
     }
     stages {
         stage('Build') {
@@ -12,9 +13,10 @@ pipeline {
         }
 	stage('Test') {
             steps {
-	        withPythonEnv("python3") {
-                    sh "python3 lbg.test.py"
-                }
+	        //withPythonEnv("python3") {
+                //    sh "python3 lbg.test.py"
+                //}
+                sh docker exec CONTAINER_NAME python lbg.test.py
             }
 	}
         stage('Deploy') {
