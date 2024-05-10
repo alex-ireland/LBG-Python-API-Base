@@ -11,12 +11,11 @@ from flask_api import status
 import requests
 
 # setup network
+PORT = 8080
+BASE_URL = f"http://localhost:{PORT}"
 LOCAL = False
-STATIC_IP = "35.210.61.199"
-if LOCAL:
-    PORT = 8080
-    BASE_URL = f"http://localhost:{PORT}"
-else:
+if !LOCAL:
+    STATIC_IP = "35.210.61.199"
     PORT = 80
     BASE_URL = f"http://{STATIC_IP}:{PORT}"
 
