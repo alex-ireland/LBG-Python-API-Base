@@ -18,7 +18,7 @@ pipeline {
             }
 	}
         stage('Deploy') {
-            when { expression { runDeployment = true } }
+            when { expression { runDeployment } }
             steps {
                 sh "echo deploying..."
             }
