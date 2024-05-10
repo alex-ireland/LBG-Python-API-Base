@@ -11,8 +11,10 @@ pipeline {
            }
         }
 	stage('Test') {
-	    withPythonEnv("python3") {
-                sh "python lbg.test.py"
+            steps {
+	        withPythonEnv("python3") {
+                    sh "python lbg.test.py"
+                }
             }
 	}
         stage('Deploy') {
