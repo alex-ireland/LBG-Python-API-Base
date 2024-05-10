@@ -13,8 +13,9 @@ import requests
 # setup network
 PORT = 8080
 BASE_URL = f"http://localhost:{PORT}"
-LOCAL = False
-if !LOCAL:
+
+REMOTE = True
+if REMOTE:
     STATIC_IP = "35.210.61.199"
     PORT = 80
     BASE_URL = f"http://{STATIC_IP}:{PORT}"
