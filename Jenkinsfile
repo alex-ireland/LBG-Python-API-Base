@@ -13,7 +13,7 @@ pipeline {
 	stage('Test') {
             steps {
 	        withPythonEnv("python3") {
-                    sh "python lbg.test.py"
+                    sh "python3 lbg.test.py"
                 }
             }
 	}
