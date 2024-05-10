@@ -16,7 +16,7 @@ pipeline {
 	        //withPythonEnv("python3") {
                 //    sh "python3 lbg.test.py"
                 //}
-                sh "docker exec CONTAINER_NAME python lbg.test.py"
+                sh "docker exec '${CONTAINER_NAME}' python lbg.test.py"
             }
 	}
         stage('Deploy') {
