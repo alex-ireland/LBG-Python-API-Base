@@ -16,6 +16,8 @@ pipeline {
 	        //withPythonEnv("python3") {
                 //    sh "python3 lbg.test.py"
                 //}
+
+                sh "echo testing..."
                 sh "docker exec '${CONTAINER_NAME}' python lbg.test.py"
             }
 	}
