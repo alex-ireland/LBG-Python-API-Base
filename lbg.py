@@ -14,9 +14,8 @@ from sqlalchemy import exc
 import mimetypes
 mimetypes.add_type('text/javascript', '.js')
 
-# set up the app with listening socket for http requests and appropriate hostname
-PORT = 8080
-HOST = '0.0.0.0'
+# set up the app with listening socket for http requests and appropriate hostname (will be handeled by os.getenv() call)
+import os
 
 # get app to serve static files from the public directory
 app = Flask(__name__, static_url_path=f'/', static_folder='./static')
@@ -205,5 +204,10 @@ def delete_one(_id):
 # module import protection
 if __name__ == '__main__':
     # get app to serve
-    print(f'API Listening on http://{HOST}:{PORT}')
+    # print(f'API Listening on http://{HOST}:{PORT}')
+    # app.run(host=HOST, port=PORT, debug=True)
+
+    PORT = (os.getenv('PORT', 8080))
+    HOST = '0.0.0.0'
+    print(f'API listening on http://{HOST}:{PORT}')
     app.run(host=HOST, port=PORT, debug=True)
