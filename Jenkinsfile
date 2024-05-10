@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
     runDeployment = false
-    CONTAINER_NAME = lbg-web-app
+    CONTAINER_NAME = "lbg-web-app"
     }
     stages {
         stage('Build') {
