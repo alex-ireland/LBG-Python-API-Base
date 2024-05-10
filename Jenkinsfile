@@ -6,13 +6,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+		sh "echo building..."
                 sh "sh setup.sh"
            }
         }
         stage('Deploy') {
             when { expression { runDeployment = true } }
             steps {
-                sh "echo deploying"
+                sh "echo deploying..."
             }
         }
     }
