@@ -10,6 +10,11 @@ pipeline {
                 sh "sh setup.sh"
            }
         }
+	stage('Test') {
+	    steps {
+                sh python lbg.test.py
+            }
+	}
         stage('Deploy') {
             when { expression { runDeployment = true } }
             steps {
