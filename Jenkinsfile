@@ -12,7 +12,7 @@ pipeline {
         }
 	stage('Test') {
 	    steps {
-                sh python lbg.test.py
+                sh "python lbg.test.py"
             }
 	}
         stage('Deploy') {
