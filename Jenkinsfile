@@ -3,28 +3,32 @@ pipeline {
     environment {
     runDeployment = false
     CONTAINER_NAME = "lbg-web-app"
+    GCR_CREDENTIALS_ID = "gcp-jenkins-ai"
+    IMAGE_NAME = "test-build-1"
+    GCR_URL = "gcr.io/lbg-mea-18/ai-repo"
     }
     stages {
-        stage('Build') {
+        stage('Build and Push to GCR') {
             steps {
-		sh "echo building..."
-                sh "sh setup.sh"
-           }
-        }
-	stage('Test') {
-            steps {
-	        //withPythonEnv("python3") {
-                //    sh "python3 lbg.test.py"
-                //}
+                script {
+                    // Authenticate with Google Cloud
 
-                sh "echo testing..."
-                sh "docker exec '${CONTAINER_NAME}' python lbg.test.py"
-            }
-	}
-        stage('Deploy') {
-            when { expression { runDeployment } }
-            steps {
-                sh "echo deploying..."
+                    withCredentials([file(credentialsId: GCR_CREDENTIALS_ID, variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                      sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
+                    }
+
+                    // Configure Docker to use gcloud as a credential helper
+
+                    sh 'gcloud auth configure-docker --quiet'
+
+                    // Build the Docker image
+
+                    sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+
+                    // Push the Docker image to GCR
+
+                    sh "docker push ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                }
             }
         }
     }
