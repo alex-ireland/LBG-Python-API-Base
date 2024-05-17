@@ -3,7 +3,7 @@ pipeline {
     environment {
         GCR_CREDENTIALS_ID = 'gcp-jenkins-ai' // The ID you provided in Jenkins credentials
         IMAGE_NAME = 'test-build-1'
-        GCR_URL = 'gcr.io/lbg-mea-18'
+        GCR_URL = 'gcr.io/lbg-mea-18/ai-repo'
     }
     stages {
         stage('Build and Push to GCR') {
