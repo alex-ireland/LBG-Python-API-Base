@@ -6,6 +6,9 @@ pipeline {
     GCR_CREDENTIALS_ID = "gcp-jenkins-ai"
     IMAGE_NAME = "test-build-1"
     GCR_URL = "gcr.io/lbg-mea-18/ai-repo"
+    CLUSTER_NAME = "ai-project-cluster"
+    LOCATION = "europe-west2-c"
+    CREDENTIALS_ID = "jenkins-ai-k8s" // Credentials for k8s service account
     }
     stages {
         stage('Build and Push to GCR') {
@@ -28,6 +31,14 @@ pipeline {
                     // Push the Docker image to GCR
 
                     sh "docker push ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('Deploy to GKE')
+            steps {
+                script {
+                    // Deploy to GKE using Jenkins Kubernetes Engine Plugin
+                    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'kubernetes/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                 }
             }
         }
