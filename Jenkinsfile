@@ -34,7 +34,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to GKE')
+        stage('Deploy to GKE') {
             steps {
                 script {
                     // Deploy to GKE using Jenkins Kubernetes Engine Plugin
