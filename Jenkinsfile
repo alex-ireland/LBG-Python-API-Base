@@ -27,7 +27,7 @@ pipeline {
 
                     // Build the Docker image
 
-                    sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:latest ." // use ${BUILD_NUMBER} to get an incrementaing value based on builds instead of <latest>
+                    sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:latest ." // can also build with tag: ${BUILD_NUMBER} which pulls the value based on current Jenkins builds instead of <latest>
 
                     // Push the Docker image to GCR
 
