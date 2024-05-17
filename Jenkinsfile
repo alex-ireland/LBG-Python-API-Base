@@ -2,10 +2,11 @@ pipeline {
     agent any
     environment {
     runDeployment = false
-    CONTAINER_NAME = "lbg-web-app"
+
     GCR_CREDENTIALS_ID = "gcp-jenkins-ai"
     IMAGE_NAME = "test-build-1"
     GCR_URL = "gcr.io/lbg-mea-18/ai-repo"
+    PROJECT_ID = "lbg-mea-18"
     CLUSTER_NAME = "ai-project-cluster"
     LOCATION = "europe-west2-c"
     CREDENTIALS_ID = "b78ef1fe-5b80-4f99-b3db-c34faaff3139" // Credentials for k8s service account
