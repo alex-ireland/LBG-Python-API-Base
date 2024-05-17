@@ -27,11 +27,11 @@ pipeline {
 
                     // Build the Docker image
 
-                    sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:latest ." // use ${BUILD_NUMBER} to get an incrementaing value based on builds instead of <latest>
 
                     // Push the Docker image to GCR
 
-                    sh "docker push ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                    sh "docker push ${GCR_URL}/${IMAGE_NAME}:latest"
                 }
             }
         }
