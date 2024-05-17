@@ -36,7 +36,7 @@ pipeline {
             }
         }
         stage('Deploy to GKE') {
-            when { expression { env.BRANCH_NAME=="main" } }
+            // when { expression { env.BRANCH_NAME=="main" } }
             steps {
                 script {
                     // Deploy to GKE using Jenkins Kubernetes Engine Plugin
