@@ -8,7 +8,7 @@ pipeline {
     GCR_URL = "gcr.io/lbg-mea-18/ai-repo"
     CLUSTER_NAME = "ai-project-cluster"
     LOCATION = "europe-west2-c"
-    CREDENTIALS_ID = "jenkins-ai-k8s" // Credentials for k8s service account
+    CREDENTIALS_ID = "b78ef1fe-5b80-4f99-b3db-c34faaff3139" // Credentials for k8s service account
     }
     stages {
         stage('Build and Push to GCR') {
